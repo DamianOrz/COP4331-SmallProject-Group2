@@ -76,7 +76,7 @@ body
 
 input[type="text"], input[type="password"] {
     width: 100%;
-    padding: 25px 30px 26px 50px; /* Extra left padding to clear the icon */
+    padding: 25px 30px 26px 50px;
     font-size: 20px;
     border: 1.5px solid #E2E8F0;
     border-radius: 12px;
@@ -113,9 +113,9 @@ input[type="text"]:focus, input[type="password"]:focus {
     background-color: #111C30;
 }
 
-/* Underlined Text Footer Link (Matches Figma footer) */
+
 .footer-text {
-    font-size: 14px;
+    font-size: 17px;
     color: #000000;
     font-weight: 700;
 }
@@ -126,7 +126,7 @@ input[type="text"]:focus, input[type="password"]:focus {
     cursor: pointer;
 }
 
-/* Status message style */
+
 #loginResult {
     display: block;
     font-size: 14px;
