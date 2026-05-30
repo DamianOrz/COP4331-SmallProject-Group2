@@ -13,7 +13,7 @@ body
 #loginDiv {
     background-color: white;
     width: 90%;
-    max-width: 700px;
+    max-width: 770px;
     min-height: 700px;
     padding: 65px 55px; 
     border-radius: 36px; 
@@ -27,29 +27,37 @@ body
 }
 
 .avatar-container {
-    font-size: 70px !important;
+    font-size: 75px !important;
     color: #1A2B49;
     margin-bottom: 10px;
 }
 
 #title {
-    font-size: 45px;
+    font-size: 42px;
     font-weight: 700;
     color: #000000;
     margin: 0 0 4px 0;
+    padding-bottom: 15px;
 }
 
 #inner-title {
     display: block;
-    font-size: 20px;
+    font-size: 18px;
     color: #4A5568;
     margin-bottom: 55px;
+}
+
+.input-row {
+    display: flex;
+    width: 100%;
+    gap: 100px; 
+    margin-bottom: 30px;
 }
 
 .input-group {
     width: 100%;
     text-align: left;
-    margin-bottom: 45px;
+    margin-bottom: 40px;
 }
 
 .input-group label {
@@ -75,7 +83,7 @@ body
 
 input[type="text"], input[type="password"] {
     width: 100%;
-    padding: 25px 30px 26px 50px;
+    padding: 16px 20px;
     font-size: 20px;
     border: 1.5px solid #E2E8F0;
     border-radius: 12px;
@@ -129,7 +137,6 @@ input[type="text"]:focus, input[type="password"]:focus {
 .registerLink:hover {
     color: #00D2FF;
 }
-
 
 #loginResult {
     display: block;
