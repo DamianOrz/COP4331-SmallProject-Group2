@@ -46,6 +46,13 @@ body
     margin-bottom: 55px;
 }
 
+.input-row {
+    display: flex;
+    width: 100%;
+    gap: 30px; 
+    margin-bottom: 35px;
+}
+
 .input-group {
     width: 100%;
     text-align: left;
