@@ -183,3 +183,45 @@ function searchColor()
 	}
 	
 }
+
+function doRegister()
+{
+    let firstName = document.getElementById("firstName").value;
+    let lastName = document.getElementById("lastName").value;
+    let login = document.getElementById("loginName").value;
+    let password = document.getElementById("loginPassword").value;
+
+    document.getElementById("loginResult").innerHTML = "";
+
+    let tmp = {firstName:firstName, lastName:lastName, login:login, password:password};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/Register.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                let jsonObject = JSON.parse(xhr.responseText);
+
+                if(jsonObject.error != "")
+                {
+                    document.getElementById("loginResult").innerHTML = jsonObject.error;
+                    return;
+                }
+
+                document.getElementById("loginResult").innerHTML = "Registration successful! Please log in.";
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("loginResult").innerHTML = err.message;
+    }
+}
