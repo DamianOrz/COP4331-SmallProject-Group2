@@ -2,7 +2,8 @@
 <head>
     <title>COP 4331 - Contacts</title>
     <script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="css/register.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
     <script type="text/javascript">
@@ -14,26 +15,59 @@
 </head>
 <body>
 
-<h1 id="title">Contact Manager</h1>
+<div id="loginDiv">
+    <div class="avatar-container">
+        <i class="fa-solid fa-circle-user"></i>
+    </div>
 
-<div id="loggedInDiv">
-    <span id="userName"></span><br />
-    <button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
-</div>
+    <h1 id="title">Contact Manager</h1>
+    <span id="inner-title">Welcome, <span id="userName"></span></span>
 
-<div id="accessUIDiv">
+    <button type="button" id="logoutButton" class="buttons" onclick="doLogout();">Log Out</button>
 
-    <input type="text" id="searchText" placeholder="Search Contacts" />
-    <button type="button" class="buttons" onclick="searchContact();"> Search </button><br />
+    <div class="input-group full-width">
+        <label for="searchText">Search Contacts:</label>
+        <div class="input-wrapper simple-input">
+            <input type="text" id="searchText" placeholder="Enter name to search" />
+        </div>
+    </div>
+    <button type="button" class="buttons" onclick="searchContact();">Search</button>
     <p id="contactList"></p>
 
-    <br />
+    <hr style="border: 0.5px solid #E2E8F0; margin: 20px 0;" />
 
-    <input type="text" id="firstNameText" placeholder="First Name" /><br />
-    <input type="text" id="lastNameText" placeholder="Last Name" /><br />
-    <input type="text" id="emailText" placeholder="Email" /><br />
-    <input type="text" id="phoneText" placeholder="Phone Number" /><br />
-    <button type="button" class="buttons" onclick="addContact();"> Add Contact </button><br />
+    <span id="inner-title">Add a Contact</span>
+
+    <div class="input-row">
+        <div class="input-group">
+            <label for="firstNameText">First Name:</label>
+            <div class="input-wrapper simple-input">
+                <input type="text" id="firstNameText" placeholder="John" />
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="lastNameText">Last Name:</label>
+            <div class="input-wrapper simple-input">
+                <input type="text" id="lastNameText" placeholder="Doe" />
+            </div>
+        </div>
+    </div>
+
+    <div class="input-group full-width">
+        <label for="emailText">Email:</label>
+        <div class="input-wrapper simple-input">
+            <input type="text" id="emailText" placeholder="john@example.com" />
+        </div>
+    </div>
+
+    <div class="input-group full-width">
+        <label for="phoneText">Phone Number:</label>
+        <div class="input-wrapper simple-input">
+            <input type="text" id="phoneText" placeholder="(555) 555-5555" />
+        </div>
+    </div>
+
+    <button type="button" class="buttons" onclick="addContact();">Add Contact</button>
     <span id="contactAddResult"></span>
 
 </div>
