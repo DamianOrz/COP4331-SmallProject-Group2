@@ -225,3 +225,23 @@ function doRegister()
         document.getElementById("loginResult").innerHTML = err.message;
     }
 }
+
+function addContact()
+{
+    // Will finish once AddContact.php is ready
+}
+
+function searchContact()
+{
+    // Will finish once SearchContact.php is ready
+}
+
+function deleteContact()
+{
+    // Will finish once DeleteContact.php is ready
+}
+
+function editContact()
+{
+    // Will finish once EditContact.php is ready
+}
