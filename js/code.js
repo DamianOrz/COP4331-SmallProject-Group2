@@ -409,6 +409,4 @@ function deleteContact(contactId)
 function editContact()
 {
 
-=======
->>>>>>> 3da71cbf8621520c083b97a54a085f13f8adb4af
 }
