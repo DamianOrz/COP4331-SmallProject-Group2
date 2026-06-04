@@ -1,10 +1,89 @@
 const urlBase = 'http://cop4331-project.xyz/LAMPAPI';
 const extension = 'php';
 
+//VARIABLES
+//Login
 let userId = 0;
 let firstName = "";
 let lastName = "";
+//Password Validation
+const passwordInput = document.getElementById("registerPassword");
 
+// If the field exists...
+if (passwordInput) {
+	const letter = document.getElementById("letter");
+	const capital = document.getElementById("capital");
+	const number = document.getElementById("number");
+	const length = document.getElementById("length");
+	const passwordRequirementsMsg = document.getElementById("passwordRequirementsMsg");
+
+	//Function to verify password strength
+	function passwordValidation() {
+		const value = passwordInput.value;
+
+		// Checks the icons for each requirement (Tick / Cross)
+		const letterIcon = letter.querySelector('.req-icon');
+		const capitalIcon = capital.querySelector('.req-icon');
+		const numberIcon = number.querySelector('.req-icon');
+		const lengthIcon = length.querySelector('.req-icon');
+
+		// Validate lowercase letters
+		if (/[a-z]/.test(value)) {
+			letter.classList.replace("invalid", "valid");
+			if (letterIcon) letterIcon.textContent = '✓';
+		} else {
+			letter.classList.replace("valid", "invalid");
+			if (letterIcon) letterIcon.textContent = '✖';
+		}
+
+		// Validate capital letters
+		if (/[A-Z]/.test(value)) {
+			capital.classList.replace("invalid", "valid");
+			if (capitalIcon) capitalIcon.textContent = '✓';
+		} else {
+			capital.classList.replace("valid", "invalid");
+			if (capitalIcon) capitalIcon.textContent = '✖';
+		}
+
+		// Validate numbers
+		if (/[0-9]/.test(value)) {
+			number.classList.replace("invalid", "valid");
+			if (numberIcon) numberIcon.textContent = '✓';
+		} else {
+			number.classList.replace("valid", "invalid");
+			if (numberIcon) numberIcon.textContent = '✖';
+		}
+
+		// Validate length
+		if (value.length >= 8) {
+			length.classList.replace("invalid", "valid");
+			if (lengthIcon) lengthIcon.textContent = '✓';
+		} else {
+			length.classList.replace("valid", "invalid");
+			if (lengthIcon) lengthIcon.textContent = '✖';
+		}
+
+		// Show requirements box when user types
+		if (passwordRequirementsMsg) {
+			passwordRequirementsMsg.style.display = value.length ? 'block' : 'none';
+		}
+	}
+
+	// Show when focused
+	passwordInput.addEventListener('focus', () => {
+		if (passwordRequirementsMsg) passwordRequirementsMsg.style.display = 'block';
+	});
+
+	// Hide on blur only if empty
+	passwordInput.addEventListener('blur', () => {
+		if (passwordRequirementsMsg && passwordInput.value.length === 0) passwordRequirementsMsg.style.display = 'none';
+	});
+
+	// Run the function on every edit (and toggle the message visibility)
+	passwordInput.addEventListener('input', passwordValidation);
+}
+
+//LOGIN
 function doLogin()
 {
 	userId = 0;
@@ -108,6 +187,82 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
+function doRegister()
+{
+    let firstName = document.getElementById("firstName").value;
+    let lastName = document.getElementById("lastName").value;
+    let login = document.getElementById("registerName").value;
+    let password = document.getElementById("registerPassword").value;
+
+    document.getElementById("loginResult").innerHTML = "";
+
+	// Validate password meets requirements before attempting to create an account
+	const hasLower = /[a-z]/.test(password);
+	const hasUpper = /[A-Z]/.test(password);
+	const hasNumber = /[0-9]/.test(password);
+	const hasLength = password.length >= 8;
+
+	if (!(hasLower && hasUpper && hasNumber && hasLength)) {
+		document.getElementById("loginResult").innerHTML = "Password does not meet requirements.";
+		if (document.getElementById("registerPassword")) document.getElementById("registerPassword").focus();
+		return;
+	}
+
+    let tmp = {firstName:firstName, lastName:lastName, login:login, password:password};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/Register.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                let jsonObject = JSON.parse(xhr.responseText);
+
+                if(jsonObject.error != "")
+                {
+                    document.getElementById("loginResult").innerHTML = jsonObject.error;
+                    return;
+                }
+
+                document.getElementById("loginResult").innerHTML = "Registration successful! Please log in.";
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("loginResult").innerHTML = err.message;
+    }
+}
+
+//CONTACTS
+function addContact()
+{
+    // Will finish once AddContact.php is ready
+}
+
+function searchContact()
+{
+    // Will finish once SearchContact.php is ready
+}
+
+function deleteContact()
+{
+    // Will finish once DeleteContact.php is ready
+}
+
+function editContact()
+{
+    // Will finish once EditContact.php is ready
+}
+
+// COLORS (Delete once finished)
 function addColor()
 {
 	let newColor = document.getElementById("colorText").value;
@@ -182,6 +337,7 @@ function searchColor()
 		document.getElementById("colorSearchResult").innerHTML = err.message;
 	}
 	
+<<<<<<< HEAD
 }
 
 function doRegister()
@@ -351,4 +507,6 @@ function deleteContact(contactId)
 function editContact()
 {
 
+=======
+>>>>>>> 3da71cbf8621520c083b97a54a085f13f8adb4af
 }
