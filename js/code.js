@@ -228,20 +228,127 @@ function doRegister()
 
 function addContact()
 {
-    // Will finish once AddContact.php is ready
+    let firstName = document.getElementById("firstNameText").value;
+    let lastName = document.getElementById("lastNameText").value;
+    let phone = document.getElementById("phoneText").value;
+    let email = document.getElementById("emailText").value;
+
+    document.getElementById("contactAddResult").innerHTML = "";
+
+    let tmp = {firstName:firstName, lastName:lastName, phone:phone, email:email, userId:userId};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/AddContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                let jsonObject = JSON.parse(xhr.responseText);
+                if(jsonObject.error != "")
+                {
+                    document.getElementById("contactAddResult").innerHTML = jsonObject.error;
+                    return;
+                }
+                document.getElementById("contactAddResult").innerHTML = "Contact added successfully!";
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("contactAddResult").innerHTML = err.message;
+    }
 }
 
 function searchContact()
 {
-    // Will finish once SearchContact.php is ready
+    let search = document.getElementById("searchText").value;
+
+    document.getElementById("contactList").innerHTML = "";
+
+    let tmp = {search:search, userId:userId};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/SearchContacts.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                let jsonObject = JSON.parse(xhr.responseText);
+
+                if(jsonObject.error != "")
+                {
+                    document.getElementById("contactList").innerHTML = jsonObject.error;
+                    return;
+                }
+
+                let contactList = "";
+                for(let i = 0; i < jsonObject.results.length; i++)
+                {
+                    let c = jsonObject.results[i];
+                    contactList += c.FirstName + " " + c.LastName + " | " + c.Phone + " | " + c.Email;
+                    contactList += " <button onclick='deleteContact(" + c.ID + ")'>Delete</button>";
+                    contactList += " <button onclick='editContact(" + c.ID + ", \"" + c.FirstName + "\", \"" + c.LastName + "\", \"" + c.Phone + "\", \"" + c.Email + "\")'>Edit</button>";
+                    contactList += "<br />";
+                }
+
+                document.getElementById("contactList").innerHTML = contactList;
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("contactList").innerHTML = err.message;
+    }
 }
 
-function deleteContact()
+function deleteContact(contactId)
 {
-    // Will finish once DeleteContact.php is ready
+    let tmp = {id:contactId, userId:userId};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/DeleteContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                let jsonObject = JSON.parse(xhr.responseText);
+                if(jsonObject.error != "")
+                {
+                    document.getElementById("contactList").innerHTML = jsonObject.error;
+                    return;
+                }
+                searchContact();
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("contactList").innerHTML = err.message;
+    }
 }
 
 function editContact()
 {
-    // Will finish once EditContact.php is ready
+
 }
