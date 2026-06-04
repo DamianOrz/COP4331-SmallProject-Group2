@@ -1,4 +1,14 @@
 <?php
+
+  // Allow requests from frontend domain
+  header("Access-Control-Allow-Origin: http://cop4331-project.xyz");
+
+  // Allow standard API communication methods
+  header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+
+  // Allow standard frontend content headers (like application/json)
+  header("Access-Control-Allow-Headers: Content-Type, Authorization");
+  
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
 
