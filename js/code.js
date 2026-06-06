@@ -364,7 +364,56 @@ function deleteContact(contactId)
     }
 }
 
-function editContact()
+function editContact(id, fn, ln, phone, email)
 {
+    document.getElementById("firstNameText").value = fn;
+    document.getElementById("lastNameText").value = ln;
+    document.getElementById("phoneText").value = phone;
+    document.getElementById("emailText").value = email;
+    document.getElementById("editContactId").innerHTML = id;
+    document.getElementById("updateButton").style.display = "inline-block";
+}
 
+function updateContact()
+{
+	// Validate that a contact is selected for update
+    let id = document.getElementById("editContactId").innerHTML;
+    let firstName = document.getElementById("firstNameText").value; 
+    let lastName = document.getElementById("lastNameText").value;
+    let phone = document.getElementById("phoneText").value;
+    let email = document.getElementById("emailText").value;
+
+    let tmp = {id:id, firstName:firstName, lastName:lastName, phone:phone, email:email, userId:userId}; 
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/UpdateContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function()
+        {
+			// Check for successful response
+            if (this.readyState == 4 && this.status == 200)
+            {
+				// Parse response and check for errors
+                let jsonObject = JSON.parse(xhr.responseText);
+                if(jsonObject.error != "")
+                {
+                    document.getElementById("contactUpdateResult").innerHTML = jsonObject.error;
+                    return;
+                }
+                document.getElementById("contactUpdateResult").innerHTML = "Contact updated!";
+                document.getElementById("updateButton").style.display = "none";
+                searchContact();
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("contactUpdateResult").innerHTML = err.message;
+    }
 }
