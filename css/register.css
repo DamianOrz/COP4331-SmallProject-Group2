@@ -13,8 +13,8 @@ body
 #loginDiv {
     background-color: white;
     width: 90%;
-    max-width: 400px;
-    padding: 35px 30px; 
+    max-width: 550px;
+    padding: 40px 35px; 
     border-radius: 30px; 
     box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.06);
     box-sizing: border-box;
@@ -119,7 +119,7 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 .footer-text {
-    font-size: 17px;
+    font-size: 15px;
     color: #000000;
     font-weight: 700;
 }
