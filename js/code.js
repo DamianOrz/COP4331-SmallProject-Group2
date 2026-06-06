@@ -229,8 +229,12 @@ function doRegister()
                     document.getElementById("loginResult").innerHTML = jsonObject.error;
                     return;
                 }
-
-                document.getElementById("loginResult").innerHTML = "Registration successful! Please log in.";
+ss
+                document.getElementById("loginResult").innerHTML = "Registration successful! Redirecting to login...";
+                
+                setTimeout(function() {
+                    window.location.href = "index.html";
+                }, 2000);
             }
         };
         xhr.send(jsonPayload);
@@ -333,6 +337,12 @@ function searchContact()
 
 function deleteContact(contactId)
 {
+
+    if (!confirm("Are you sure you want to delete this contact?"))
+    {
+        return; 
+    }
+
     let tmp = {id:contactId, userId:userId};
     let jsonPayload = JSON.stringify(tmp);
 
