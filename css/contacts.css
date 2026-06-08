@@ -159,8 +159,23 @@ input[type="text"]:focus {
 .search-box {
     padding: 24px 30px;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
     gap: 16px;
+}
+
+.search-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.search-row .input-group {
+    flex: 1;
+}
+
+.search-actions {
+    display: flex;
+    gap: 12px;
 }
 
 .btn-search {
@@ -185,6 +200,96 @@ input[type="text"]:focus {
 .btn-logout:hover {
     background-color: #E53E3E;
     color: white;
+}
+
+.contact-card {
+    background-color: #E8F3FF;
+    border: 1px solid #B6D4F2;
+    border-radius: 20px;
+    padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0px 14px 30px rgba(26, 43, 73, 0.08);
+}
+
+.contact-card .input-group {
+    margin-bottom: 14px;
+}
+
+.contact-card .input-row {
+    display: flex;
+    gap: 16px;
+}
+
+.contact-card .input-row .input-group {
+    flex: 1;
+    min-width: 0;
+}
+
+.contact-card label {
+    display: block;
+    color: #1A2B49;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.contact-field {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid #D8E6F5;
+    background-color: #F7FBFF;
+    color: #1A2B49;
+    box-shadow: inset 0px 3px 6px rgba(26, 43, 73, 0.03);
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.contact-field:disabled {
+    color: #4A5568;
+    background-color: #EDF4FF;
+}
+
+.contact-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.btn-secondary {
+    background-color: #A0AEC0;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-weight: bold;
+}
+
+.btn-secondary:hover {
+    background-color: #718096;
+}
+
+.btn-success {
+    background-color: #38A169;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-weight: bold;
+}
+
+.btn-danger {
+    background-color: #E53E3E;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
 }
 
 .main-content {
