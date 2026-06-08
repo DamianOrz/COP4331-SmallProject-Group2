@@ -48,7 +48,7 @@ body {
     gap: 24px;
     font-size: 20px;
     font-weight: 600;
-    color: #4A5568;
+    color: #2D3748;
 }
 
 #userName {
@@ -185,8 +185,8 @@ input[type="text"]:focus {
 }
 
 .btn-logout {
-    background-color: transparent;
-    color: #E53E3E;
+    background-color: #e58585;
+    color: #C0392B;
     border: 1.5px solid #E53E3E;
     padding: 10px 20px;
     font-size: 15px;
@@ -198,7 +198,7 @@ input[type="text"]:focus {
 }
 
 .btn-logout:hover {
-    background-color: #E53E3E;
+    background-color: #C0392B;
     color: white;
 }
 
