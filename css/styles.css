@@ -7,7 +7,7 @@ body
     align-items: center;
     min-height: 100vh;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-     background: linear-gradient(-45deg, #b6dff4, #80c1ea, #529dc0, #406c81);
+    background: linear-gradient(-45deg, #b6dff4, #80c1ea, #529dc0, #4493b7);
     background-size: 400% 400%;
     animation: gradientFlow 12s ease infinite;
 }
@@ -23,9 +23,8 @@ body
 #loginDiv {
     background-color: white;
     width: 100%;
-    max-width: 700px;
-    min-height: 700px;
-    padding: 50px 45px; 
+    max-width: 750px;
+    padding: 55px 50px; 
     border-radius: 36px; 
     box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.06);
     box-sizing: border-box;
@@ -59,12 +58,12 @@ body
 .input-group {
     width: 100%;
     text-align: left;
-    margin-bottom: 45px;
+    margin-bottom: 40px;
 }
 
 .input-group label {
     display: block;
-    font-size: 15px;
+    font-size: 18px;
     color: #000000;
     margin-bottom: 8px;
 }
@@ -106,9 +105,9 @@ input[type="text"]:focus, input[type="password"]:focus {
     width: 100%;
     background-color: #1A2B49;
     color: #ffffff;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
-    padding: 14px;
+    padding: 18px;
     border: none;
     border-radius: 12px;
     cursor: pointer;

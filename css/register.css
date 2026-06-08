@@ -153,13 +153,11 @@ input[type="text"]:focus, input[type="password"]:focus {
     color: green;
 }
 
-/* Styling for password validation */
 #passwordRequirementsMsg {
     display: none;
     margin-top: 10px;
 }
 
-/* Styling for ticks/crosses in password validation */
 .req-icon {
     display: inline-block;
     width: 20px;
@@ -169,13 +167,11 @@ input[type="text"]:focus, input[type="password"]:focus {
     font-size: 16px;
 }
 
-/* Show password requirements when user clicks the input field */
 #registerPassword:focus + #passwordRequirementsMsg,
 #registerPassword:active + #passwordRequirementsMsg {
     display: block;
 }
 
-/* Keep password validation information box visible if user has already typed something */
 #registerPassword:not(:placeholder-shown) + #passwordRequirementsMsg {
     display: block;
 }
