@@ -12,8 +12,8 @@ body
 
 #loginDiv {
     background-color: white;
-    width: 90%;
-    max-width: 500px;
+    width: 100%;
+    max-width: 600px;
     min-height: 700px;
     padding: 50px 45px; 
     border-radius: 36px; 
@@ -109,7 +109,7 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 .buttons:hover {
-    background-color: #111C30;
+    background-color: #6381ba;
 }
 
 

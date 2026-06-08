@@ -229,7 +229,6 @@ function doRegister()
                     document.getElementById("loginResult").innerHTML = jsonObject.error;
                     return;
                 }
-ss
                 document.getElementById("loginResult").innerHTML = "Registration successful! Redirecting to login...";
                 
                 setTimeout(function() {
