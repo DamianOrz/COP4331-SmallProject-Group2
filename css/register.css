@@ -52,7 +52,7 @@ body
     display: block;
     font-size: 22px;
     color: #4A5568;
-    margin-bottom: 24px; 
+    margin-bottom: 30px; 
 }
 
 .input-row {
@@ -70,7 +70,7 @@ body
 
 .input-group label {
     display: block;
-    font-size: 20px;
+    font-size: 22px;
     color: #000000;
     margin-bottom: 10px;
 }
@@ -129,7 +129,7 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 .footer-text {
-    font-size: 15px;
+    font-size: 18px;
     color: #000000;
     font-weight: 700;
 }
