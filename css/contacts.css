@@ -257,7 +257,7 @@ input[type="text"]:focus {
 }
 
 .btn-secondary {
-    background-color: #A0AEC0;
+    background-color: #112a4b;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -268,7 +268,7 @@ input[type="text"]:focus {
 }
 
 .btn-secondary:hover {
-    background-color: #718096;
+    background-color: #abc9f5;
 }
 
 .btn-success {

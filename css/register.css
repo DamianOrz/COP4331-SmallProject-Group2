@@ -1,6 +1,5 @@
 body 
 {
-    background-color: #C4E2F5;
     margin: 0;
     padding: 20px;
     display: flex;
@@ -8,13 +7,23 @@ body
     align-items: center;
     min-height: 100vh;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(-45deg, #b6dff4, #80c1ea, #529dc0, #4493b7);
+    background-size: 400% 400%;
+    animation: gradientFlow 12s ease infinite;
+}
+
+@keyframes gradientFlow {
+    0%   { background-position: 0% 0%; }
+    25%  { background-position: 100% 0%; }
+    50%  { background-position: 100% 100%; }
+    75%  { background-position: 0% 100%; }
+    100% { background-position: 0% 0%; }
 }
 
 #loginDiv {
     background-color: white;
     width: 100%;
-    max-width: 600px;
-    min-width: 450px;
+    max-width: 800px;
     padding: 50px 40px; 
     border-radius: 30px; 
     box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.06);
@@ -32,7 +41,7 @@ body
 }
 
 #title {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 700;
     color: #000000;
     margin: 0 0 4px 0;
@@ -41,9 +50,9 @@ body
 
 #inner-title {
     display: block;
-    font-size: 20px;
+    font-size: 22px;
     color: #4A5568;
-    margin-bottom: 24px; 
+    margin-bottom: 30px; 
 }
 
 .input-row {
@@ -61,9 +70,9 @@ body
 
 .input-group label {
     display: block;
-    font-size: 18px;
+    font-size: 22px;
     color: #000000;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .input-wrapper {
@@ -82,7 +91,7 @@ body
 
 input[type="text"], input[type="password"] {
     width: 100%;
-    padding: 15px 15px;
+    padding: 18px 18px;
     font-size: 18px;
     border: 1.5px solid #E2E8F0;
     border-radius: 10px;
@@ -103,9 +112,9 @@ input[type="text"]:focus, input[type="password"]:focus {
     width: 100%;
     background-color: #1A2B49;
     color: #ffffff;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
-    padding: 14px;
+    padding: 18px;
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -120,7 +129,7 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 .footer-text {
-    font-size: 15px;
+    font-size: 18px;
     color: #000000;
     font-weight: 700;
 }
@@ -144,13 +153,11 @@ input[type="text"]:focus, input[type="password"]:focus {
     color: green;
 }
 
-/* Styling for password validation */
 #passwordRequirementsMsg {
     display: none;
     margin-top: 10px;
 }
 
-/* Styling for ticks/crosses in password validation */
 .req-icon {
     display: inline-block;
     width: 20px;
@@ -160,13 +167,11 @@ input[type="text"]:focus, input[type="password"]:focus {
     font-size: 16px;
 }
 
-/* Show password requirements when user clicks the input field */
 #registerPassword:focus + #passwordRequirementsMsg,
 #registerPassword:active + #passwordRequirementsMsg {
     display: block;
 }
 
-/* Keep password validation information box visible if user has already typed something */
 #registerPassword:not(:placeholder-shown) + #passwordRequirementsMsg {
     display: block;
 }
