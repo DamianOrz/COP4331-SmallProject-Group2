@@ -13,9 +13,8 @@ body
 #loginDiv {
     background-color: white;
     width: 100%;
-    max-width: 600px;
-    min-width: 450px;
-    padding: 50px 40px; 
+    max-width: 750px;
+    padding: 55px 45px; 
     border-radius: 30px; 
     box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.06);
     box-sizing: border-box;
