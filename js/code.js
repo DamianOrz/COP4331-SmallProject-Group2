@@ -145,6 +145,17 @@ function saveCookie()
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
+function escapeHtml(text)
+{
+	if (typeof text !== 'string') return text;
+	return text
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#39;');
+}
+
 function readCookie()
 {
 	userId = -1;
@@ -252,6 +263,12 @@ function addContact()
     let phone = document.getElementById("phoneText").value;
     let email = document.getElementById("emailText").value;
 
+    if(firstName == "" && lastName == "" && phone == "" && email == "")
+    {
+        document.getElementById("contactAddResult").innerHTML = "All fields are empty. Contact not added.";
+        return;
+    }
+
     document.getElementById("contactAddResult").innerHTML = "";
 
     let tmp = {firstName:firstName, lastName:lastName, phone:phone, email:email, userId:userId};
@@ -275,6 +292,12 @@ function addContact()
                     return;
                 }
                 document.getElementById("contactAddResult").innerHTML = "Contact added successfully!";
+
+                //Clear fields
+                document.getElementById("firstNameText").value = "";
+                document.getElementById("lastNameText").value = "";
+                document.getElementById("phoneText").value = "";
+                document.getElementById("emailText").value = "";
             }
         };
         xhr.send(jsonPayload);
@@ -285,9 +308,12 @@ function addContact()
     }
 }
 
-function searchContact()
+function searchContact(searchQuery)
 {
-    let search = document.getElementById("searchText").value;
+    let search = typeof searchQuery === 'string' ? searchQuery : document.getElementById("searchText").value;
+    if (typeof searchQuery === 'string') {
+        document.getElementById("searchText").value = search;
+    }
 
     document.getElementById("contactList").innerHTML = "";
 
@@ -317,10 +343,36 @@ function searchContact()
                 for(let i = 0; i < jsonObject.results.length; i++)
                 {
                     let c = jsonObject.results[i];
-                    contactList += c.FirstName + " " + c.LastName + " | " + c.Phone + " | " + c.Email;
-                    contactList += " <button onclick='deleteContact(" + c.ID + ")'>Delete</button>";
-                    contactList += " <button onclick='editContact(" + c.ID + ", \"" + c.FirstName + "\", \"" + c.LastName + "\", \"" + c.Phone + "\", \"" + c.Email + "\")'>Edit</button>";
-                    contactList += "<br />";
+                    let firstName = escapeHtml(c.FirstName);
+                    let lastName = escapeHtml(c.LastName);
+                    let phone = escapeHtml(c.Phone);
+                    let email = escapeHtml(c.Email);
+
+                    contactList += `
+                        <div class="contact-card" data-contact-id="${c.ID}">
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>First Name</label>
+                                    <input type="text" class="contact-field" value="${firstName}" disabled />
+                                </div>
+                                <div class="input-group">
+                                    <label>Last Name</label>
+                                    <input type="text" class="contact-field" value="${lastName}" disabled />
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Phone</label>
+                                <input type="text" class="contact-field" value="${phone}" disabled />
+                            </div>
+                            <div class="input-group">
+                                <label>Email</label>
+                                <input type="text" class="contact-field" value="${email}" disabled />
+                            </div>
+                            <div class="contact-actions">
+                                <button type="button" class="btn-danger" onclick="deleteContact(${c.ID})">Delete</button>
+                                <button type="button" class="btn-primary" onclick="startEditContact(this)">Edit</button>
+                            </div>
+                        </div>`;
                 }
 
                 document.getElementById("contactList").innerHTML = contactList;
@@ -332,6 +384,12 @@ function searchContact()
     {
         document.getElementById("contactList").innerHTML = err.message;
     }
+}
+
+function clearSearchResults()
+{
+    document.getElementById("searchText").value = "";
+    document.getElementById("contactList").innerHTML = '<h3 style="font-style: italic; display: flex; justify-content: center; align-items: center; height: inherit">Start searching to see your contacts!</h3>';
 }
 
 function deleteContact(contactId)
@@ -371,6 +429,87 @@ function deleteContact(contactId)
     {
         document.getElementById("contactList").innerHTML = err.message;
     }
+}
+
+function startEditContact(button)
+{
+    //Find closest .contact-card
+    const card = button.closest('.contact-card');
+    if (!card) return;
+
+    //Select each field and enable editing
+    card.querySelectorAll('.contact-field').forEach(field => {
+        field.dataset.originalValue = field.value;
+        field.disabled = false;
+    });
+
+    const contactId = card.dataset.contactId;
+    card.querySelector('.contact-actions').innerHTML = `
+        <button type="button" class="btn-success" onclick="confirmEditContact(this, ${contactId})">Confirm</button>
+        <button type="button" class="btn-secondary" onclick="cancelEditContact(this)">Cancel</button>
+    `;
+}
+
+function cancelEditContact(button)
+{
+    const card = button.closest('.contact-card');
+    if (!card) return;
+
+    card.querySelectorAll('.contact-field').forEach(field => {
+        if (field.dataset.originalValue !== undefined) {
+            field.value = field.dataset.originalValue;
+        }
+        field.disabled = true;
+    });
+
+    restoreCardActions(card);
+}
+
+function confirmEditContact(button, contactId)
+{
+    const card = button.closest('.contact-card');
+    if (!card) return;
+
+    //Setup edited values
+    const fields = card.querySelectorAll('.contact-field');
+    const updatedValues = {
+        id: contactId,
+        firstName: fields[0].value,
+        lastName: fields[1].value,
+        phone: fields[2].value,
+        email: fields[3].value,
+        userId: userId
+    };
+
+    //Update
+    const jsonPayload = JSON.stringify(updatedValues);
+    const url = urlBase + '/UpdateContact.' + extension;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const jsonObject = JSON.parse(xhr.responseText);
+            if (jsonObject.error != '') {
+                card.querySelector('.contact-actions').insertAdjacentHTML('beforeend', `<span class="error-text">${escapeHtml(jsonObject.error)}</span>`);
+                return;
+            }
+
+            fields.forEach(field => field.disabled = true);
+            restoreCardActions(card);
+        }
+    };
+    xhr.send(jsonPayload);
+}
+
+function restoreCardActions(card)
+{
+    const contactId = card.dataset.contactId;
+    card.querySelector('.contact-actions').innerHTML = `
+        <button type="button" class="btn-danger" onclick="deleteContact(${contactId})">Delete</button>
+        <button type="button" class="btn-primary" onclick="startEditContact(this)">Edit</button>
+    `;
 }
 
 function editContact(id, fn, ln, phone, email)

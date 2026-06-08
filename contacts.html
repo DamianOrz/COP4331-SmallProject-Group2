@@ -64,16 +64,24 @@
         <section class="main-content">
             
             <div class="search-box">
-                <div class="input-group" style="margin-bottom: 0;">
-                    <label for="searchText">Search Contacts:</label>
-                    <input type="text" id="searchText" placeholder="Enter name to search" />
+                <div class="search-row">
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <label for="searchText">Search Contacts:</label>
+                        <input type="text" id="searchText" placeholder="Enter name to search" />
+                    </div>
+                    <button type="button" class="btn-primary btn-search" onclick="searchContact();">Search</button>
                 </div>
-                <button type="button" class="btn-primary btn-search" onclick="searchContact();">Search</button>
+                <div class="search-actions">
+                    <button type="button" class="btn-secondary" onclick="searchContact('');">Show All</button>
+                    <button type="button" class="btn-secondary" onclick="clearSearchResults();">Clear Results</button>
+                </div>
             </div>
 
             <div class="contacts-display-section">
                 <h2>Your Contacts</h2>
-                <p id="contactList"></p>
+                <div id="contactList">
+                    <h3 style="font-style: italic; display: flex; justify-content: center; align-items: center; height: inherit">Start searching to see your contacts!</h3>
+                </div>
             </div>
 
         </section>
