@@ -16,62 +16,68 @@
 </head>
 <body>
 
-<div id="loginDiv">
-    <div class="avatar-container">
-        <i class="fa-solid fa-circle-user"></i>
-    </div>
-
-    <h1 id="title">Contact Manager</h1>
-    <span id="inner-title">Welcome, <span id="userName"></span></span>
-
-    <button type="button" id="logoutButton" class="buttons" onclick="doLogout();">Log Out</button>
-
-    <div class="input-group full-width">
-        <label for="searchText">Search Contacts:</label>
-        <div class="input-wrapper simple-input">
-            <input type="text" id="searchText" placeholder="Enter name to search" />
-        </div>
-    </div>
-    <button type="button" class="buttons" onclick="searchContact();">Search</button>
-    <p id="contactList"></p>
-
-    <hr style="border: 0.5px solid #E2E8F0; margin: 20px 0;" />
-
-    <span id="inner-title">Add a Contact</span>
-
-    <div class="input-row">
-        <div class="input-group">
-            <label for="firstNameText">First Name:</label>
-            <div class="input-wrapper simple-input">
-                <input type="text" id="firstNameText" placeholder="John" />
+<div class="dashboard-wrapper">
+    
+    <header class="dashboard-header">
+        <div class="header-brand">
+            <div class="avatar-container">
+                <i class="fa-solid fa-circle-user"></i>
             </div>
+            <h1 id="title">Contact Manager</h1>
         </div>
-        <div class="input-group">
-            <label for="lastNameText">Last Name:</label>
-            <div class="input-wrapper simple-input">
-                <input type="text" id="lastNameText" placeholder="Doe" />
+        <div class="header-user">
+            <span>Welcome, <span id="userName"></span></span>
+            <button type="button" id="logoutButton" class="btn-logout" onclick="doLogout();">Log Out</button>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        
+        <aside class="sidebar-card">
+            <h2>Add a Contact</h2>
+            
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="firstNameText">First Name:</label>
+                    <input type="text" id="firstNameText" placeholder="John" />
+                </div>
+                <div class="input-group">
+                    <label for="lastNameText">Last Name:</label>
+                    <input type="text" id="lastNameText" placeholder="Doe" />
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="input-group full-width">
-        <label for="emailText">Email:</label>
-        <div class="input-wrapper simple-input">
-            <input type="text" id="emailText" placeholder="john@example.com" />
-        </div>
-    </div>
+            <div class="input-group">
+                <label for="emailText">Email:</label>
+                <input type="text" id="emailText" placeholder="john@example.com" />
+            </div>
 
-    <div class="input-group full-width">
-        <label for="phoneText">Phone Number:</label>
-        <div class="input-wrapper simple-input">
-            <input type="text" id="phoneText" placeholder="(555) 555-5555" />
-        </div>
-    </div>
+            <div class="input-group">
+                <label for="phoneText">Phone Number:</label>
+                <input type="text" id="phoneText" placeholder="(555) 555-5555" />
+            </div>
 
-    <button type="button" class="buttons" onclick="addContact();">Add Contact</button>
-    <span id="contactAddResult"></span>
+            <button type="button" class="btn-primary" onclick="addContact();">Add Contact</button>
+            <span id="contactAddResult"></span>
+        </aside>
 
+        <section class="main-content">
+            
+            <div class="search-box">
+                <div class="input-group" style="margin-bottom: 0;">
+                    <label for="searchText">Search Contacts:</label>
+                    <input type="text" id="searchText" placeholder="Enter name to search" />
+                </div>
+                <button type="button" class="btn-primary btn-search" onclick="searchContact();">Search</button>
+            </div>
+
+            <div class="contacts-display-section">
+                <h2>Your Contacts</h2>
+                <p id="contactList"></p>
+            </div>
+
+        </section>
+    </main>
 </div>
-
 </body>
 </html>
