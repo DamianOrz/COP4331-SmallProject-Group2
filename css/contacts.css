@@ -186,7 +186,7 @@ input[type="text"]:focus {
 
 .btn-logout {
     background-color: #e58585;
-    color: #C0392B;
+    color: #0e0e0e;
     border: 1.5px solid #E53E3E;
     padding: 10px 20px;
     font-size: 15px;
