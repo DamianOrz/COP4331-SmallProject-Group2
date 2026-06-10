@@ -43,6 +43,26 @@ main {
     justify-content: center; 
 }
 
+.logo-text {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    font-size: 3.5rem; 
+    margin-bottom: 0.2em;
+    text-align: center;
+}
+
+.logo-text .solid {
+    color: #000000;
+    font-style: normal;
+    font-weight: 700; 
+}
+
+.logo-text .faded {
+    color: #A0A0A0; 
+    font-style: italic;
+    font-weight: 700; 
+}
+
 .avatar-container {
     font-size: 55px !important;
     color: #1A2B49;
