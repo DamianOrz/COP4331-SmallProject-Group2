@@ -13,39 +13,41 @@
 </head>
 <body>
 
-<div id="loginDiv">
-	<div class="avatar-container">
-		<i class="fa-solid fa-circle-user"></i>
-	</div>
-	<h1 id="title">Contact Manager</h1>
-	<span id="inner-title">Sign in to your account</span>
-	
-	<div class = "input-group">
-		<label for="loginName">Username:</label>
-		<div class ="input-wrapper">
-			<i class="fa-regular fa-user input-icon"></i>
-            <input type="text" id="loginName" placeholder="Enter your username" />
+<main>
+	<div id="loginDiv">
+		<div class="avatar-container">
+			<i class="fa-solid fa-circle-user"></i>
 		</div>
-	</div>
-
-	<div class = "input-group">
-		<label for="loginPassword">Password:</label>
-		<div class ="input-wrapper">
-			<i class="fa-solid fa-lock input-icon"></i>
-            <input type="password" id="loginPassword" placeholder="•••••"/>
+		<h1 id="title">Contact Manager</h1>
+		<span id="inner-title">Sign in to your account</span>
+		
+		<div class = "input-group">
+			<label for="loginName">Username:</label>
+			<div class ="input-wrapper">
+				<i class="fa-regular fa-user input-icon"></i>
+				<input type="text" id="loginName" placeholder="Enter your username" />
+			</div>
 		</div>
+
+		<div class = "input-group">
+			<label for="loginPassword">Password:</label>
+			<div class ="input-wrapper">
+				<i class="fa-solid fa-lock input-icon"></i>
+				<input type="password" id="loginPassword" placeholder="•••••"/>
+			</div>
+		</div>
+
+
+		<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Sign In</button>
+
+		<div class = "footer-text">
+			Don’t have an account? <span id="registerButton" class="registerLink" onclick="window.location.href='register.html';">Sign up.</span>
+		</div>
+
+		<span id="loginResult"></span>
+
 	</div>
-
-
-	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Sign In</button>
-
-	<div class = "footer-text">
-		Don’t have an account? <span id="registerButton" class="registerLink" onclick="window.location.href='register.html';">Sign up.</span>
-	</div>
-
-	<span id="loginResult"></span>
-
-</div>
+</main>
 
 </body>
 </html>
