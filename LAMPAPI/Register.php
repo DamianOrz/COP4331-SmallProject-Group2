@@ -1,14 +1,31 @@
 <?php
 
-  // Allow requests from frontend domain
-  header("Access-Control-Allow-Origin: http://cop4331-project.xyz");
+// Allowed origins
+$allowed_origins = [
+    "http://cop4331-project.xyz",
+    "http://www.cop4331-project.xyz",
+    "https://cop4331-project.xyz",
+    "https://www.cop4331-project.xyz"
+];
 
-  // Allow standard API communication methods
-  header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+// Check the request origin
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 
-  // Allow standard frontend content headers (like application/json)
-  header("Access-Control-Allow-Headers: Content-Type, Authorization");
-  
+// Allow the request if it matches
+if (in_array($origin, $allowed_origins)) {
+    header("Access-Control-Allow-Origin: " . $origin);
+}
+
+// Standard CORS headers
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+// Stop here for preflight checks
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
 
